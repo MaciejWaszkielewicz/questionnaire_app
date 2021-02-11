@@ -1,0 +1,6 @@
+<div id="<%= dom_id(answer) %>">
+  <%= form_for answer, url: survey_approach_answer_path(answer.approach.survey, answer.approach, answer), remote: true do |form| %>
+    <%= render partial: "answers/form/#{answer.type.underscore}", locals: { form: form } %>
+    <%= form.button "Update", class: "btn btn-sm btn-success" %>
+  <% end %>
+</div>

@@ -1,0 +1,3 @@
+<%= form.label :value, form.object.question.query, class: "form-label" %>
+<%= render partial: "answers/form/errors", locals: { object: form.object } %>
+<%= form.select :value, form.object.question.options.map{ |option| [option.answer_text, option.id] }, { include_blank: !form.object.question.required? }, {class: "form-control"} %>

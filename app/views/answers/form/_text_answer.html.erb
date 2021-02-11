@@ -1,0 +1,10 @@
+<%= form.label :value, "#{form.object.question.query} #{ "(max: " + form.object.question.max_characters.to_s + " characters)" if form.object.question.max_characters.positive? }", class: "form-label" %>
+<%= render partial: "answers/form/errors", locals: { object: form.object } %>
+<%= form.text_field :value, class: "form-control", list: dom_id(form.object.question), required: form.object.question.required?, maxlength: (form.object.question.max_characters.positive? ? form.object.question.max_characters : nil ) do %>
+
+<% end %>
+<datalist id="<%= dom_id(form.object.question) %>">
+  <% form.object.question.options.each do |option| %>
+    <option value="<%= option.answer_text %>" />
+  <% end %>
+</datalist>

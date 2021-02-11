@@ -1,0 +1,3 @@
+<%= form.label :value, form.object.question.query, class: "form-label" %>
+<%= render partial: "answers/form/errors", locals: { object: form.object } %>
+<%= form.date_field :value, class: "form-control" %>

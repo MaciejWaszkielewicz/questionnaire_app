@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="card-header">
+    <h5 class="text-center"><%= survey.title %></h5>
+  </div>
+  <div class="card-body">
+    <p>Questions count: <%= survey.questions.count %></p>
+    <p>Approaches count: <%= survey.approaches.count %></p>
+  </div>
+  <div class="card-footer text-center">
+    <%= link_to "Show Approaches", survey_approaches_path(survey), class: "btn btn-sm btn-secondary" %>
+    <%= link_to "New Approach", new_survey_section_approach_path(survey, survey.sections.first), class: "btn btn-sm btn-primary" %>
+  </div>
+</div>

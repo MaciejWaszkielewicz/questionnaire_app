@@ -1,0 +1,24 @@
+<%= form_for [section.survey, section, approach] do |form| %>
+
+  <% section.questions.each do |question| %>
+
+    <%= form.fields_for :answers, approach.answers.select{ |answer| answer.question_id == question.id } do |answers_fields| %>
+      <div class="mb-3">
+        <%= answers_fields.hidden_field :question_id %>
+        <%= render partial: "answers/form/#{answers_fields.object.type.underscore}", locals: { form: answers_fields } %>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="row">
+    <div class="col">
+      <%= form.button section.previous&.id, { value: section.previous&.id, name: "next_section", disabled: !section.previous.present? , class: "btn btn-secondary w-100" } do %>
+        Previous
+      <% end %>
+    </div>
+    <div class="col">
+      <%= form.button section.next&.id, { value: section.next&.id, name: "next_section", class: "btn btn-success w-100" } do %>
+        <%= (section.next.nil? ? "Save" : "Next") %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+<% sections.each do |section| %>
+  <div class="row">
+    <div class="col border-bottom">
+      <h4><%= section.title %></h4>
+    </div>
+  </div>
+  <% section.questions.each do |question| %>
+    <% answer = approach.answers.select{ |answer| answer.question == question }&.first %>
+    <div class="row">
+      <div class="col">
+        <%= render partial: "answers/#{ question.value_type.underscore }", locals: { question: question, answer: answer } %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

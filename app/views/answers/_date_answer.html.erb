@@ -1,0 +1,5 @@
+<p id="<%= dom_id(answer) %>">
+  <b><%= question.query %>:</b>
+  <%= answer&.value %>
+  <%= link_to "Edit", edit_survey_approach_answer_path(answer.approach.survey, answer.approach, answer), remote: true %>
+</p>
