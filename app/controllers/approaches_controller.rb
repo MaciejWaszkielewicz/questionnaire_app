@@ -23,12 +23,14 @@ class ApproachesController < ApplicationController
 
   def create
     unless prepare_answers_params
-      return redirect_to new_survey_section_approach_path(@survey, @survey.sections.first), notice: "Questions was changed! You have to start agine!"
+      return redirect_to new_survey_section_approach_path(@survey, @survey.sections.first), notice: "Questions was changed! You have to start again!"
     end
     unless merge_answers_params
-      return redirect_to new_survey_section_approach_path(@survey, @survey.sections.first), notice: "Questions was changed! You have to start agine!"
+      return redirect_to new_survey_section_approach_path(@survey, @survey.sections.first), notice: "Questions was changed! You have to start again!"
     end
     @approach = @survey.approaches.new({ answers_attributes: @answers_params })
+
+    # assign next section if all answers for current section are valid
     unless @approach.answers.select{ |answer|
         @section.questions.pluck(:id).include?(answer.question_id) and \
         !answer.valid?
